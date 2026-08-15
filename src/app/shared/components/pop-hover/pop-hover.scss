@@ -1,0 +1,13 @@
+.pop-hover {
+  --pop-hover-height: 20px;
+  height: var(--pop-hover-height);
+
+  .pop-hover-container {
+    width: 100%;
+    height: var(--pop-hover-height);
+    min-width: 200px;
+    background: var(--pop-hover-background);
+    box-shadow: var(--pop-hover-box-shadow);
+    border-radius: var(--pop-hover-border-radius);
+  }
+}
