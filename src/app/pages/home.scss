@@ -1,5 +1,162 @@
+@use '../shared/styles/_variables.scss';
+
 .board {
+  --z-index-board: 10;
+  --padding-left-and-right: 0.8rem;
+
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: #fdfff7;
+
+  .board-nav-bar {
+    position: fixed;
+    width: 4rem;
+    left: var(--padding-left-and-right);
+    top: 10rem;
+    border-radius: 5px;
+    z-index: var(--z-index-board);
+    border: 0.5px solid #e9eaef;
+    box-shadow: 0 2px 4px 0px #22242814;
+  }
+
+  .board-zoom-controls {
+    position: fixed;
+    height: 3rem;
+    width: 14rem;
+    border-radius: 5px;
+    background: variables.$white;
+    -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    right: var(--padding-left-and-right);
+    bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    overflow: hidden;
+    z-index: var(--z-index-board);
+
+    .board-zoom-percent {
+      color: variables.$primary_light;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .board-zoom-out,
+    .board-zoom-in {
+      width: 3rem;
+      cursor: pointer;
+      min-height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      &:hover {
+        background-color: rgba(189, 163, 229, 0.6);
+      }
+    }
+  }
+
+  .board-nav-content {
+    height: 100%;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .board-nav-selectors {
+    display: flex;
+    flex-direction: column;
+    background: variables.$white;
+    justify-content: space-evenly;
+    -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    padding: 0.3rem;
+    border-radius: 5px;
+    min-height: 380px;
+  }
+
+  .board-nav-undo-redo {
+    background: variables.$white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 5px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .board-nav-export {
+    background: variables.$white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+    margin-top: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 5px;
+    min-height: 40px;
+  }
+
+  .board-nav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: variables.$borderRadius;
+    cursor: pointer;
+    transition: background-color 0.08s ease-in-out;
+    position: relative;
+
+    &.undo-redo {
+      /* padding: 0.3rem; */
+      border-radius: 5px;
+      min-height: 2.7rem;
+    }
+
+    &.communication {
+      background: variables.$white;
+      border-radius: 5px;
+      -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+      margin-top: 0.5rem;
+      min-height: 40px;
+    }
+
+    &.settings {
+      background: rgba(189, 163, 229, 0.3);
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+    }
+
+    &.active {
+      background: rgba(189, 163, 229, 0.3);
+    }
+
+    /*&:is(.communication).active {
+      background: rgba(189,163,229,0.30);
+      border-radius: 5px;
+      -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.15);
+      box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.15);
+      margin-top: 0.5rem;
+    }*/
+
+    &:hover:not(.active) {
+      background: rgba(189, 163, 229, 0.6);
+    }
+  }
 }

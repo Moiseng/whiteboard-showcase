@@ -7,3 +7,8 @@ body,
   margin: 0;
   font-size: 14px;
 }
+
+html,
+body {
+  overscroll-behavior-x: none;
+}

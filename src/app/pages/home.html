@@ -1,3 +1,90 @@
 <div class="board">
+  <section class="board-nav-bar">
+    <div class="board-nav-content">
+      <div>
+        <div class="board-nav-selectors">
+          <div class="board-nav-btn">
+            <od-svg path="/images/icons/board_nav/pointer_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn">
+            <od-svg
+              path="/images/icons/board_nav/frame_icon.svg"
+              (click)="setBoardAction('createFrame')"
+            ></od-svg>
+          </div>
+          <div id="board_card" class="board-nav-btn">
+            <od-svg path="/images/icons/board_nav/papper_icon.svg"></od-svg>
+            <od-pop-hover
+              listenTo="board_card"
+              shadow="0px 2px 6px 0px rgba(0, 0, 0, 0.15)"
+              [borderRadius]="'10px'"
+              backgroundColor="#fff"
+              width="40%"
+              position="absolute"
+              top="0"
+              left="4rem"
+              bottom="0"
+              right="0"
+            >
+              <od-card-picker (selectedColorChange)="setCardColor($event)"></od-card-picker>
+            </od-pop-hover>
+          </div>
+          <div class="board-nav-btn">
+            <od-svg path="/images/icons/board_nav/pen_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn">
+            <od-svg path="/images/icons/board_nav/connector_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn" (click)="setTextAction()">
+            <od-svg path="/images/icons/board_nav/Text_icon.svg"></od-svg>
+          </div>
+          <!--<div class="board-nav-btn disabled-div" id="board_search">
+            <od-svg path="/images/icons/board_nav/Search_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn disabled-div">
+            <od-svg path="/images/icons/board_nav/Timer_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn disabled-div">
+            <od-svg path="/images/icons/board_nav/dot_icon.svg"></od-svg>
+          </div>-->
+        </div>
+        <div class="board-nav-undo-redo">
+          <div class="board-nav-btn undo-redo">
+            <od-svg path="/images/icons/board_nav/redo_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn undo-redo">
+            <od-svg path="/images/icons/board_nav/undo_icon.svg"></od-svg>
+          </div>
+        </div>
+        <!--
+        <div class="board-nav-communication">
+          <div class="board-nav-btn communication disabled-div">
+            <od-svg path="/images/icons/board_nav/voice_icon.svg"></od-svg>
+          </div>
+          <div class="board-nav-btn communication disabled-div">
+            <od-svg path="/images/icons/board_nav/video_on_icon.svg"></od-svg>
+          </div>
+        </div>-->
+      </div>
+      <!--<div>
+        <div class="board-nav-export">
+          <div class="board-nav-btn">
+            <od-svg path="/images/icons/board_nav/save_icon.svg"></od-svg>
+          </div>
+        </div>
+      </div>-->
+    </div>
+  </section>
+  <section class="board-zoom-controls">
+    <div class="board-zoom-out" (click)="zoomOut($event)">
+      <od-svg path="/images/icons/zoom_out_icon.svg"></od-svg>
+    </div>
+    <div class="board-zoom-percent">
+      <p>{{ zoomValue | boardZoomPercent }}</p>
+    </div>
+    <div class="board-zoom-in" (click)="zoomIn($event)">
+      <od-svg path="/images/icons/zoom_in_icon.svg"></od-svg>
+    </div>
+  </section>
   <od-whiteboard />
 </div>
