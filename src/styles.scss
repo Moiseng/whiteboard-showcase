@@ -10,5 +10,9 @@ body,
 
 html,
 body {
+  overflow-y: hidden;
   overscroll-behavior-x: none;
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
 }
