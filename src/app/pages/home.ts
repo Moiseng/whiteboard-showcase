@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Board } from './component/board';
 import { SvgComponent } from '../shared/components/svg/svg';
-import { ActionRegistryHandler } from '@odyssea999/whiteboard';
+import { ActionRegistryHandler, effect as WBEffect, Zoom } from '@odyssea999/whiteboard';
 import { BoardZoomPipe } from './pipe/board-zoom';
 import { PopHoverComponent } from '../shared/components/pop-hover/pop-hover';
 import { CardPickerComponent } from './component/card-picker/card-picker';
@@ -17,21 +17,26 @@ import { Maybe } from '../shared/type';
 export class Home {
   public zoomValue: number = 1;
   private readonly _actionHandler: ActionRegistryHandler = ActionRegistryHandler.getInstance();
+  private readonly zoom = Zoom.getInstance();
 
-  zoomIn(event: MouseEvent): void {
-    this._actionHandler.setAction('zoomInAction');
-    this._actionHandler.execute({
-      event: event,
-      props: { zoom_in: this.zoomValue },
+  constructor() {
+    WBEffect((): void => {
+      this.zoomValue = this.zoom.$zoomValue.value;
     });
   }
 
+  zoomIn(event: MouseEvent): void {
+    this._actionHandler.setWithParams('zoomInAction', {
+      props: { zoom_in: this.zoomValue },
+    });
+    this._actionHandler.execute();
+  }
+
   zoomOut(event: MouseEvent): void {
-    this._actionHandler.setAction('zoomOutAction');
-    this._actionHandler.execute({
-      event: event,
+    this._actionHandler.setWithParams('zoomOutAction', {
       props: { zoom_out: this.zoomValue },
     });
+    this._actionHandler.execute();
   }
 
   setBoardAction(action: string): void {
@@ -39,7 +44,7 @@ export class Home {
   }
 
   setTextAction(): void {
-    this._actionHandler.setAction('createTextAction');
+    this._actionHandler.setAction('createText');
   }
 
   setCardColor(value: Maybe<string>): void {
