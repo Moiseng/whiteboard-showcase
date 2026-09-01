@@ -1,0 +1,13 @@
+.od-dialog {
+  position: absolute;
+  top: 3rem;
+  border-radius: 5px;
+  border: 0.5px solid #e9eaef;
+  box-shadow: 0 2px 4px 0px #22242814;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  z-index: 10000;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -7,12 +7,13 @@ import { PopHoverComponent } from '../shared/components/pop-hover/pop-hover';
 import { CardPickerComponent } from './component/card-picker/card-picker';
 import { cardColor } from './component/board.signal';
 import { Maybe } from '../shared/type';
+import { Dialog } from '../shared/components/dialog/dialog';
 
 @Component({
   selector: 'od-home',
   templateUrl: './home.html',
   styleUrl: './home.scss',
-  imports: [Board, SvgComponent, BoardZoomPipe, PopHoverComponent, CardPickerComponent],
+  imports: [Board, SvgComponent, Dialog, BoardZoomPipe, PopHoverComponent, CardPickerComponent],
 })
 export class Home {
   public zoomValue: number = 1;
