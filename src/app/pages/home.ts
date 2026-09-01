@@ -39,6 +39,16 @@ export class Home {
     this._actionHandler.execute();
   }
 
+  undo(): void {
+    this._actionHandler.setAction('undoAction');
+    this._actionHandler.execute();
+  }
+
+  redo(): void {
+    this._actionHandler.setAction('redoAction');
+    this._actionHandler.execute();
+  }
+
   setBoardAction(action: string): void {
     this._actionHandler.setAction(action);
   }
