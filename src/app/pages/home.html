@@ -10,7 +10,7 @@
           <div class="board-nav-btn">
             <od-svg path="/images/icons/board_nav/pointer_icon.svg"></od-svg>
           </div>
-          <div class="board-nav-btn">
+          <div class="board-nav-btn" (click)="setFrameAction()">
             <od-svg
               path="/images/icons/board_nav/frame_icon.svg"
               (click)="setBoardAction('createFrame')"
@@ -33,14 +33,18 @@
               <od-card-picker (selectedColorChange)="setCardColor($event)"></od-card-picker>
             </od-pop-hover>
           </div>
-          <div class="board-nav-btn">
+          <!--<div class="board-nav-btn">
             <od-svg path="/images/icons/board_nav/pen_icon.svg"></od-svg>
-          </div>
-          <div class="board-nav-btn">
+          </div>-->
+          <!--<div class="board-nav-btn">
             <od-svg path="/images/icons/board_nav/connector_icon.svg"></od-svg>
-          </div>
+          </div>-->
           <div class="board-nav-btn" (click)="setTextAction()">
-            <od-svg path="/images/icons/board_nav/Text_icon.svg"></od-svg>
+            <od-svg
+              height="30px"
+              width="30px"
+              path="/images/icons/board_nav/Text_icon.svg"
+            ></od-svg>
           </div>
           <!--<div class="board-nav-btn disabled-div" id="board_search">
             <od-svg path="/images/icons/board_nav/Search_icon.svg"></od-svg>

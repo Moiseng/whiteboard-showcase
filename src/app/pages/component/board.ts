@@ -1,26 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Canvas, CanvasSize, ODBoard } from '@odyssea999/whiteboard';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ODBoard } from '@odyssea999/whiteboard';
 
 @Component({
   selector: 'od-whiteboard',
-  template: ` <canvas id="id_board"></canvas> `,
+  template: ` <div id="id_board"></div> `,
 })
-export class Board implements OnInit {
-  private readonly canvsSize: CanvasSize = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
+export class Board implements OnInit, OnDestroy {
+  private odBoard: ODBoard;
 
-  private readonly odCanvas: Canvas = Canvas.getInstance();
-
-  private odBoard!: ODBoard;
-
-  constructor() {}
+  constructor() {
+    this.odBoard = new ODBoard('id_board');
+  }
 
   ngOnInit(): void {
-    this.odCanvas.handleCanvasInitialization('id_board', this.canvsSize, 'transparent');
-    this.odBoard = new ODBoard(this.odCanvas);
-
     this.odBoard.init();
+  }
+
+  ngOnDestroy(): void {
+    this.odBoard.destroy();
   }
 }
