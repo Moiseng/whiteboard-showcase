@@ -5,9 +5,9 @@ import {
   ElementRef,
   input,
   InputSignal,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
-import {SvgService} from "./service/svg.service";
+import { SvgService } from './service/svg.service';
 
 @Component({
   selector: 'od-svg',
@@ -19,25 +19,27 @@ import {SvgService} from "./service/svg.service";
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   host: {
-    "class": "od-svg"
-  }
+    class: 'od-svg',
+  },
 })
-export class SvgComponent implements AfterContentInit{
-
+export class SvgComponent implements AfterContentInit {
   /**
    * SVG file path
    */
-  path: InputSignal<string> = input<string>("");
+  path: InputSignal<string> = input<string>('');
   /**
    * SVG width
    */
-  width: InputSignal<string> = input<string>("");
+  width: InputSignal<string> = input<string>('25px');
   /**
    * SVG height
    */
-  height: InputSignal<string> = input<string>("");
+  height: InputSignal<string> = input<string>('25px');
 
-  constructor(private readonly ref: ElementRef, private readonly svgService: SvgService) {}
+  constructor(
+    private readonly ref: ElementRef,
+    private readonly svgService: SvgService,
+  ) {}
 
   ngAfterContentInit() {
     this.init();
@@ -56,10 +58,9 @@ export class SvgComponent implements AfterContentInit{
   }
 
   getSVGAfterInit(height: string | undefined, width: string | undefined): void {
-    const svg = this.ref.nativeElement.querySelector("svg");
+    const svg = this.ref.nativeElement.querySelector('svg');
 
     if (svg !== undefined) {
-
       if (height !== undefined) {
         svg.style.height = height;
       }
@@ -69,5 +70,4 @@ export class SvgComponent implements AfterContentInit{
       }
     }
   }
-
 }

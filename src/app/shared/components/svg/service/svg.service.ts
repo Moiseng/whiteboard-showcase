@@ -1,7 +1,9 @@
-import {ElementRef, Injectable} from "@angular/core";
+import { ElementRef, Injectable } from '@angular/core';
+import { SVGBuilder } from './svg-builder';
 
 @Injectable()
 export class SvgService {
+  private readonly _svgBuilder: SVGBuilder = new SVGBuilder();
 
   /**
    * Handle svg file
@@ -12,7 +14,9 @@ export class SvgService {
   async handleSvgFile(filePath: string, elRef: ElementRef): Promise<void> {
     try {
       const getSvg = await this.fetchFile(filePath);
-      elRef.nativeElement.insertAdjacentHTML("beforeend", getSvg);
+      const svgCleaned = this._svgBuilder.parseSVGString(getSvg);
+
+      elRef.nativeElement.appendChild(svgCleaned);
     } catch (err: any) {
       throw new Error(err.message);
     }
@@ -28,9 +32,9 @@ export class SvgService {
     const request = await fetch(filePath, {
       method: 'GET',
       headers: {
-        "Content-Type": "image/svg+xml"
-      }
-    })
+        'Content-Type': 'image/svg+xml',
+      },
+    });
     return await request.text();
   }
 }
