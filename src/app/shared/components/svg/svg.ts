@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SvgService } from './service/svg.service';
+import { Maybe } from '@odyssea999/whiteboard';
 
 @Component({
   selector: 'od-svg',
@@ -35,6 +36,8 @@ export class SvgComponent implements AfterContentInit {
    * SVG height
    */
   height: InputSignal<string> = input<string>('25px');
+  fill: InputSignal<string> = input<string>('');
+  stroke: InputSignal<string> = input<string>('');
 
   constructor(
     private readonly ref: ElementRef,
@@ -49,16 +52,23 @@ export class SvgComponent implements AfterContentInit {
     const svgFilePath: string | undefined = this.path();
     const width: string | undefined = this.width();
     const height: string | undefined = this.height();
+    const fill: Maybe<string> = this.fill();
+    const stroke: Maybe<string> = this.stroke();
 
     if (svgFilePath !== undefined) {
       this.svgService.handleSvgFile(svgFilePath, this.ref).finally(() => {
-        this.getSVGAfterInit(height, width);
+        this.getSVGAfterInit(height, width, fill, stroke);
       });
     }
   }
 
-  getSVGAfterInit(height: string | undefined, width: string | undefined): void {
-    const svg = this.ref.nativeElement.querySelector('svg');
+  getSVGAfterInit(
+    height: Maybe<string>,
+    width: Maybe<string>,
+    fill: Maybe<string>,
+    stroke: Maybe<string>,
+  ): void {
+    const svg: Maybe<SVGElement> = this.ref.nativeElement.querySelector('svg');
 
     if (svg !== undefined) {
       if (height !== undefined) {
@@ -67,6 +77,26 @@ export class SvgComponent implements AfterContentInit {
 
       if (width !== undefined) {
         svg.style.width = width;
+      }
+
+      this.applyStyleToSVGChildElements(svg, fill, stroke);
+    }
+  }
+
+  private applyStyleToSVGChildElements(
+    svg: SVGElement,
+    fill: Maybe<string>,
+    stroke: Maybe<string>,
+  ): void {
+    const children = svg.querySelectorAll('path');
+
+    for (const path of children) {
+      if (fill) {
+        path.style.fill = fill;
+      }
+
+      if (stroke) {
+        path.style.stroke = stroke;
       }
     }
   }

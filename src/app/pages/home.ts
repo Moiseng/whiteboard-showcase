@@ -105,17 +105,25 @@ export class Home implements OnInit, AfterContentChecked, OnDestroy {
   }
 
   setCardColor(value: Maybe<string>): void {
-    if (value !== undefined) {
-      /*    this._actionHandler.setWithParams('createCard', {
-        props: shapeBuilder('Card', value),
-      });
-      cardColor.set(value);*/
+    if (this._boardContext && value) {
+      this._boardContext.actionManager.prepare(
+        this._boardContext,
+        'core:shape.createRectangleAction',
+        {
+          scope: 'broadcast',
+          data: shapeBuilder('Rectangle', value),
+        },
+      );
+      cardColor.set(value);
     }
   }
 
   setFrameAction(): void {
-    /*this._actionHandler.setWithParams('createFrame', {
-      props: shapeBuilder('Frame'),
-    });*/
+    if (this._boardContext) {
+      this._boardContext.actionManager.prepare(this._boardContext, 'core:shape.createFrame', {
+        scope: 'broadcast',
+        data: shapeBuilder('Frame'),
+      });
+    }
   }
 }
