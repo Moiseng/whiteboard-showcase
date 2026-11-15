@@ -10,11 +10,29 @@
     <div class="board_tL_title-playeholder">
       <input
         autocomplete="off"
-        value="Placeholder 1"
+        value="Untitled board"
         placeholder="Board title"
         type="text"
         id="b_TL_titleP"
       />
+    </div>
+    <div class="board_tL_options">
+      <button>
+        <od-svg [rotate]="90" path="/images/icons/board_nav/dot_icon.svg"></od-svg>
+      </button>
+    </div>
+  </section>
+  <section class="board_tR_layout">
+    <div class="board_tR_share">
+      <button class="board_tR_share-btn">Partager</button>
+    </div>
+    <div class="board_tR_help">
+      <button class="board_tR_help-btn">
+        <p>?</p>
+      </button>
+    </div>
+    <div class="board_tR_profile">
+      <p>M</p>
     </div>
   </section>
   <section class="board-nav-bar">

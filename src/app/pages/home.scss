@@ -1,5 +1,5 @@
 @use '../shared/styles/_variables.scss';
-
+/*#fafaff canvas background-color later */
 .board {
   --z-index-board: 10;
   --padding-left-and-right: 0.8rem;
@@ -10,6 +10,80 @@
   width: 100%;
   height: 100%;
   background-color: #fdfff7;
+
+  .board_tR_layout {
+    position: fixed;
+    max-width: 25%;
+    right: var(--padding-left-and-right);
+    top: 2rem;
+    z-index: var(--z-index-board);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 2.9rem;
+    justify-content: flex-end;
+    gap: 0.9rem;
+    padding: 0.4rem 0.5rem;
+
+    .board_tR_share {
+      button {
+        cursor: pointer;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        background-color: rgba(189, 163, 229, 0.6);
+        font-size: 1.2rem;
+        font-family: sans-serif;
+        transition: background-color ease 0.13s;
+
+        &:hover {
+          background-color: rgb(189 163 229);
+        }
+      }
+    }
+
+    .board_tR_help {
+      border-radius: 90px;
+
+      &:hover {
+        background-color: #f7f3ff;
+      }
+
+      > button {
+        border: 0.13rem solid #000000;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 0.5rem 0.7rem;
+        color: #000000;
+        border-radius: inherit;
+
+        p {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .board_tR_profile {
+      width: 2rem;
+      background-color: rgb(83 12 193);
+      font-size: 1.2rem;
+      padding: 0.7rem 0.3rem;
+      text-align: center;
+      border-radius: 90px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #ffffff;
+      transition: background-color ease 0.13s;
+
+      &:hover {
+        background-color: rgb(122 62 215);
+      }
+    }
+  }
 
   .board_tL_layout {
     position: fixed;
@@ -22,10 +96,9 @@
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
-    min-height: 2.8rem;
+    height: 2.9rem;
     align-items: center;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding: 0.4rem 0.5rem;
 
     .board_tL_logo > h1 {
       font-size: 3rem;
@@ -38,6 +111,7 @@
       width: 100%;
       height: 2.5rem;
       border-radius: var(--border-radius);
+      margin-right: 0.8rem;
 
       &:hover {
         background-color: #f7f3ff;
@@ -58,6 +132,20 @@
         }
       }
     }
+
+    .board_tL_options {
+      button {
+        cursor: pointer;
+        border: none;
+        padding: 0.4rem;
+        border-radius: var(--border-radius);
+        background-color: transparent;
+
+        &:hover {
+          background-color: #f7f3ff;
+        }
+      }
+    }
   }
 
   .board-nav-bar {
@@ -74,7 +162,7 @@
   .board-zoom-controls {
     position: fixed;
     height: 2.9rem;
-    width: 17.5rem;
+    width: 12rem;
     border-radius: 5px;
     background: variables.$white;
     -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
@@ -91,7 +179,7 @@
     z-index: var(--z-index-board);
 
     .board-zoom-percent {
-      color: variables.$primary_light;
+      color: #000000;
       text-align: center;
       display: flex;
       align-items: center;
@@ -99,7 +187,6 @@
       border-radius: 5px;
       font-family: 'Outfit', sans-serif;
       font-weight: bold;
-      cursor: pointer;
     }
 
     .board-zoom-out,

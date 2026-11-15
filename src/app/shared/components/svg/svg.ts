@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { SvgService } from './service/svg.service';
-import { Maybe } from '@odyssea999/whiteboard';
+import { Maybe, Nullable } from '@odyssea999/whiteboard';
 
 @Component({
   selector: 'od-svg',
@@ -38,6 +38,7 @@ export class SvgComponent implements AfterContentInit {
   height: InputSignal<string> = input<string>('25px');
   fill: InputSignal<string> = input<string>('');
   stroke: InputSignal<string> = input<string>('');
+  rotate: InputSignal<Nullable<number>> = input<Nullable<number>>(null);
 
   constructor(
     private readonly ref: ElementRef,
@@ -80,6 +81,7 @@ export class SvgComponent implements AfterContentInit {
       }
 
       this.applyStyleToSVGChildElements(svg, fill, stroke);
+      this.applyRotate(svg);
     }
   }
 
@@ -98,6 +100,14 @@ export class SvgComponent implements AfterContentInit {
       if (stroke) {
         path.style.stroke = stroke;
       }
+    }
+  }
+
+  private applyRotate(svg: SVGElement): void {
+    const rotateAngle: Nullable<number> = this.rotate();
+
+    if (rotateAngle !== null) {
+      svg.style.transform = `rotate(${rotateAngle}deg)`;
     }
   }
 }
